@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import RecipeList from "./components/RecipeList";
+import {useState} from 'react'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [recipes, setRecipes] = useState([
+        {id: 1, title: 'yes'},
+        {id: 2, title: 'no'},
+        {id: 3, title: 'maybe'}
+    ])
+    return (
+        <div className="container">
+            <RecipeList recipes={recipes}/>
+        </div>
+    );
 }
 
 export default App;
