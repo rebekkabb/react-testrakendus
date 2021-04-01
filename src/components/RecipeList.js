@@ -1,20 +1,17 @@
 import Recipe from "./Recipe";
 
-const RecipeList = ({recipes}) => {
-    const onClick = () => {
-        console.log('click')
-    }
+const RecipeList = ({recipes, onDelete, switchComponent}) => {
     return (
         <div className='recipe-list'>
             <div className="header">
                 <h1>Retseptid</h1>
-                <button onClick={onClick} className='add-button'>Lisa retsept</button>
+                <button onClick={() => switchComponent('add', '')} className='add-button button-block'>Lisa retsept</button>
             </div>
             <div>
                 {recipes.map((recipe) => (
-                    <Recipe currentRecipe={recipe}/>
+                    <Recipe
+                       key={recipe.id} currentRecipe={recipe} onDelete={onDelete} switchComponent={switchComponent}/>
                 ))}
-
             </div>
         </div>
     )
