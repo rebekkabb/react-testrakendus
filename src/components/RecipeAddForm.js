@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {Link, useHistory} from "react-router-dom";
 
 const RecipeAddForm = ({onAdd, switchComponent}) => {
     const [title, setTitle] = useState('')
@@ -7,27 +8,34 @@ const RecipeAddForm = ({onAdd, switchComponent}) => {
     const [ingredients, setIngredients] = useState('')
     const [guide, setGuide] = useState('')
 
+    let history = useHistory();
+
     const onSubmit = (e) => {
         e.preventDefault()
 
-        if(!title){
+        if (!title) {
             alert('Pealkiri on lisamata!')
             return
         }
 
         onAdd({title, course, time, ingredients, guide})
-        switchComponent('intro', '', 'Retsept lisatud!')
+        switchComponent('')
 
         setTitle('')
         setCourse('')
         setTime(0)
         setIngredients('')
         setGuide('')
+
+        history.push('/')
     }
 
+
+
     return (
-        <form className='add-form' onSubmit={onSubmit}>
-            <h3> Lisa retsept </h3>
+        <form className='form-container' onSubmit={onSubmit}>
+            <Link to='/' className='return-link'> Tagasi </Link>
+            <h1> Lisa retsept </h1>
             <div className='form-element'>
                 <label>Retsepti pealkiri</label>
                 <input type='text' placeholder='Lisa pealkiri'
@@ -58,7 +66,7 @@ const RecipeAddForm = ({onAdd, switchComponent}) => {
                           value={guide} onChange={(e) => setGuide(e.target.value)}
                 />
             </div>
-            <input className='add-button button-block' type='submit' value='Salvesta retsept'/>
+            <input className='submit-button button-block' type='submit' value='Salvesta retsept'/>
         </form>
     )
 }

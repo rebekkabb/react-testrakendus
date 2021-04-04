@@ -19,23 +19,46 @@ body {
 }
 
 .container {
-    min-height: 70vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: row;
     border: 1px solid darkgray;
-    max-width: 90vw;
+    max-width: 50vw;
     border-radius: 5px;
 }
 
-.recipe-list {
-    padding: 30px 5px;
-    width: 20vw;
+.recipe-list-container {
     text-align: center;
-    background-color: #F1F5F2;
-    overflow-y: auto
+    overflow-y: auto;
+    min-width: 35vw;
+    text-decoration: none;
 }
 
-.add-button {
+.recipe-list-container a {
+    text-decoration: none;
+    color: #2c3e50;
+
+}
+
+.header {
+    margin-bottom: 30px;
+    padding: 30px 50px;
+    background-color: #F1F5F2;
+}
+
+.header h1 {
+    margin-bottom: 30px;
+}
+
+.header hr {
+    margin-top: 30px;
+}
+
+.recipes {
+    padding: 0 50px;
+}
+
+.submit-button {
     display: inline-block;
     background: lightgray;
     border: none;
@@ -43,41 +66,45 @@ body {
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 18px;
     font-family: inherit;
 }
 
-.add-button:focus {
+.submit-button:focus {
     outline: none;
 }
 
-.add-button:active {
+.submit-button:active {
     transform: scale(0.60);
 }
 
-.header {
-    margin-bottom: 30px;
+.header hr {
+    color: lightgray;
 }
 
 .recipe-title {
-    font-size: 20px;
+    width: 25vw;
+    font-size: 18px;
     cursor: pointer;
-    margin-left: 20px;
+    height: 40px;
+    border-radius: 3px;
+    background-color: #CFDDD3;
 }
 
 .item {
-    background-color: #CFDDD3;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 40px;
     margin-bottom: 2px;
-    border-radius: 3px;
 }
 
-.item:hover {
+.recipe-title:hover {
     background-color: #DBE6DE;
     cursor: pointer;
+}
+
+.buttons {
+    margin: 0 10px;
 }
 
 .button {
@@ -96,55 +123,91 @@ button:hover {
     width: 100%;
 }
 
-.buttons {
-    margin-right: 10px;
+.return-link{
+    float: right;
 }
 
-.add-form {
-    padding: 30px 5px;
-    min-width: 30vw;
+.form-container {
+    min-width: 35vw;
+    margin: 25px 20px;
 }
 
-.add-form h3 {
+.form-container a {
+    text-decoration: none;
+    color: #2c3e50;
+}
+
+.form-container h1 {
     text-align: center;
+    margin-top: 25px;
 }
 
 .form-element {
-    margin: 25px 10px;
+    margin: 25px 0;
+    background-color: #CFDDD3;
+    border-radius: 3px;
 }
 
 .form-element label {
     display: block;
-    margin-left: 5px;
+    padding: 5px;
 }
 
 .form-element input {
     width: 100%;
     height: 25px;
-    margin: 5px;
-    padding: 3px 7px;
     font-size: 15px;
 }
 
 .form-element textarea {
     width: 100%;
     height: 100px;
-    margin: 5px;
-    padding: 3px 7px;
     font-size: 15px;
 }
 
-.intro-container {
+.display-container {
+    max-width: 35vw;
+    min-width: 35vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-left: 1px solid gray;
-
+    flex-direction: column;
+    padding: 60px 50px;
 }
 
-.intro-container p {
-    font-size: 20px;
-    padding: 0 35px;
+.display-container a {
+    text-decoration: none;
+    color: #2c3e50;
+}
+
+.upper-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.with-svg-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 10vw;
+}
+.with-svg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.small-margin {
+    margin-bottom: 60px;
+}
+
+.display-container hr {
+    margin: 30px 0;
+}
+
+.display-whitespace {
+    white-space: pre-line;
 }
 
 

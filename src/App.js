@@ -1,22 +1,18 @@
 import RecipeList from "./components/RecipeList";
 import RecipeAddForm from "./components/RecipeAddForm";
-import {useState, useEffect} from 'react'
-import axios from 'axios';
-import IntroDisplay from "./components/IntroDisplay";
 import RecipeEditForm from "./components/RecipeEditForm";
 import RecipeDisplay from "./components/RecipeDisplay";
+import {useState, useEffect} from 'react'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import axios from 'axios';
 
-//TODO: add routing
 function App() {
 
     const [recipes, setRecipes] = useState([])
-    const [currentDisplay, setCurrentDisplay] = useState('intro')
-    const [currentRecipe, setCurrentRecipe] = useState('')
-    const [prompt, setPrompt] = useState('Vali nimekirjast retsept mida vaadata :)')
+    const [currentRecipe, setCurrentRecipe] = useState("")
 
     useEffect(() => {
         loadRecipes();
-        setCurrentDisplay('intro')
     }, []);
 
     const loadRecipes = () => {
@@ -24,26 +20,25 @@ function App() {
             setRecipes(res.data.recipes)
         })
     }
+
     const deleteRecipe = (id) => {
         axios.delete('/api/recipes/' + id).then(res => {
             loadRecipes()
-            console.log('delete', id)
+            alert('Retsept on kustutatud!')
         })
     }
 
-    const switchComponent = (component, recipe, prompt) => {
-        setCurrentDisplay(component)
-        setCurrentRecipe(recipe)
-        setPrompt(prompt)
+    const switchCurrentRecipe = async (recipe) => {
+
     }
 
     const addRecipe = (recipe) => {
         axios.post('/api/recipes/', {
             title: recipe.title,
-            type: recipe.course,
+            type: recipe.type,
             time: recipe.time,
             ingredients: recipe.ingredients,
-            steps: recipe.guide,
+            steps: recipe.steps,
         }).then(res => {
             loadRecipes()
             console.log(res)
@@ -53,31 +48,38 @@ function App() {
     const editRecipe = (recipe, id) => {
         axios.patch('/api/recipes/' + id, {
             title: recipe.title,
-            type: recipe.course,
+            type: recipe.type,
             time: recipe.time,
             ingredients: recipe.ingredients,
-            steps: recipe.guide,
+            steps: recipe.steps,
         }).then(res => {
             loadRecipes()
             console.log(res)
         })
     }
     return (
-        <div className="container">
-            {recipes.length > 0 ? (
-                <RecipeList recipes={recipes} onDelete={deleteRecipe} switchComponent={switchComponent}/>
-            ) : ('No recipes to show')}
-
-            {currentDisplay === 'intro' ? (
-                <IntroDisplay prompt={prompt}/>
-            ) : currentDisplay === 'add' ? (
-                <RecipeAddForm onAdd={addRecipe} switchComponent={switchComponent}/>
-            ) : currentDisplay === 'edit' ? (
-                <RecipeEditForm currentRecipe={currentRecipe} onEdit={editRecipe} switchComponent={switchComponent}/>
-            ) : currentDisplay === 'display' ? (
-                <RecipeDisplay currentRecipe={currentRecipe}/>
-            ) : null}
-        </div>
+        <BrowserRouter>
+            <div className="container">
+                <Switch>
+                    <Route exact path='/' render={() => (
+                        <>
+                            <RecipeList recipes={recipes} onDelete={deleteRecipe}
+                                        switchComponent={switchCurrentRecipe}/>
+                        </>
+                    )}/>
+                    <Route path='/display/:id' render={() => (
+                        <RecipeDisplay/>
+                    )}/>
+                    <Route path='/add' render={() => (
+                        <RecipeAddForm onAdd={addRecipe} switchComponent={switchCurrentRecipe}/>
+                    )}/>
+                    <Route path='/edit/:id' render={() => (
+                        <RecipeEditForm currentRecipe={currentRecipe} onEdit={editRecipe}
+                                        switchComponent={switchCurrentRecipe}/>
+                    )}/>
+                </Switch>
+            </div>
+        </BrowserRouter>
     );
 }
 

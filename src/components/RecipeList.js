@@ -1,16 +1,21 @@
 import Recipe from "./Recipe";
+import {Link} from "react-router-dom";
 
 const RecipeList = ({recipes, onDelete, switchComponent}) => {
     return (
-        <div className='recipe-list'>
+        <div className='recipe-list-container'>
             <div className="header">
                 <h1>Retseptid</h1>
-                <button onClick={() => switchComponent('add', '')} className='add-button button-block'>Lisa retsept</button>
+                <Link to='/add'>
+                    <span className='submit-button button-block'>Lisa retsept</span>
+                </Link>
+                <hr/>
             </div>
-            <div>
+
+            <div className='recipes'>
                 {recipes.map((recipe) => (
                     <Recipe
-                       key={recipe.id} currentRecipe={recipe} onDelete={onDelete} switchComponent={switchComponent}/>
+                        key={recipe.id} currentRecipe={recipe} onDelete={onDelete} switchComponent={switchComponent}/>
                 ))}
             </div>
         </div>
