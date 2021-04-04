@@ -9,7 +9,13 @@ export function makeServer({environment = "development"} = {}) {
         },
 
         seeds(server) {
-            server.create("recipe", {title: "Eggs", type: "Breakfast", time: 15, ingredients: "text", steps: "text"})
+            server.create("recipe", {
+                title: "Eggs",
+                type: "Breakfast",
+                time: 15,
+                ingredients: "Butter, egg, salt, pepper",
+                steps: "1. Heat up the pan. 2. Melt butter on pan. 3. Crack the egg onto the pan. 4. Let the egg cook for a few minutes."
+            })
             server.create("recipe", {
                 title: "Salad",
                 type: "Lunch/Dinner",
@@ -24,6 +30,11 @@ export function makeServer({environment = "development"} = {}) {
 
             this.get("/recipes", (schema) => {
                 return schema.recipes.all()
+            })
+
+            this.get("/recipes/:id", (schema, request) => {
+                let id = request.params.id
+                return schema.recipes.find(id)
             })
 
             this.post("/recipes", (schema, request) => {
