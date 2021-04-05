@@ -5,7 +5,7 @@ const Recipe = ({currentRecipe, onDelete, switchComponent}) => {
         <div className="item">
             <div className='recipe-title'>
                 <Link to={'/display/' + currentRecipe.id}>
-                    <h3 key={currentRecipe.id}>{currentRecipe.title}</h3>
+                    <p key={currentRecipe.id}>{currentRecipe.title}</p>
                 </Link>
             </div>
             <div className='buttons'>

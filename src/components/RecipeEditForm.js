@@ -90,7 +90,7 @@ const RecipeEditForm = ({onEdit}) => {
                 }}
                 />
             </div>
-            <input className='submit-button button-block' type='submit' value='Muuda retsepti'/>
+            <input className='submit-button button-block' type='submit' value='Salvesta retsepti'/>
         </form>
     )
 }

@@ -30,7 +30,7 @@ body {
 .recipe-list-container {
     text-align: center;
     overflow-y: auto;
-    min-width: 35vw;
+    min-width: 38vw;
     text-decoration: none;
 }
 
@@ -166,8 +166,11 @@ button:hover {
 }
 
 .display-container {
+    overflow-y: auto;
     max-width: 35vw;
-    min-width: 35vw;
+    min-width: 38vw;
+    min-height: 60vh;
+    max-height: 60vh;
     display: flex;
     flex-direction: column;
     padding: 60px 50px;

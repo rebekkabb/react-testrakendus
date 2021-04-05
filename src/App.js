@@ -9,7 +9,6 @@ import axios from 'axios';
 function App() {
 
     const [recipes, setRecipes] = useState([])
-    const [currentRecipe, setCurrentRecipe] = useState("")
 
     useEffect(() => {
         loadRecipes();
@@ -26,10 +25,6 @@ function App() {
             loadRecipes()
             alert('Retsept on kustutatud!')
         })
-    }
-
-    const switchCurrentRecipe = async (recipe) => {
-
     }
 
     const addRecipe = (recipe) => {
@@ -63,19 +58,17 @@ function App() {
                 <Switch>
                     <Route exact path='/' render={() => (
                         <>
-                            <RecipeList recipes={recipes} onDelete={deleteRecipe}
-                                        switchComponent={switchCurrentRecipe}/>
+                            <RecipeList recipes={recipes} onDelete={deleteRecipe}/>
                         </>
                     )}/>
                     <Route path='/display/:id' render={() => (
                         <RecipeDisplay/>
                     )}/>
                     <Route path='/add' render={() => (
-                        <RecipeAddForm onAdd={addRecipe} switchComponent={switchCurrentRecipe}/>
+                        <RecipeAddForm onAdd={addRecipe}/>
                     )}/>
                     <Route path='/edit/:id' render={() => (
-                        <RecipeEditForm currentRecipe={currentRecipe} onEdit={editRecipe}
-                                        switchComponent={switchCurrentRecipe}/>
+                        <RecipeEditForm onEdit={editRecipe}/>
                     )}/>
                 </Switch>
             </div>

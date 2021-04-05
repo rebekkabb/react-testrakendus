@@ -21,7 +21,6 @@ const RecipeDisplay = () => {
 
     return (
         <div className="display-container">
-
             <div className='upper-container'>
                 <h2> {recipe.title} </h2>
                 <Link to='/' className='return-link'> Tagasi </Link>

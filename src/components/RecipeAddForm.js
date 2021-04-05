@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {Link, useHistory} from "react-router-dom";
 
-const RecipeAddForm = ({onAdd, switchComponent}) => {
+const RecipeAddForm = ({onAdd}) => {
     const [title, setTitle] = useState('')
     const [course, setCourse] = useState('')
     const [time, setTime] = useState(0)
@@ -19,7 +19,6 @@ const RecipeAddForm = ({onAdd, switchComponent}) => {
         }
 
         onAdd({title, course, time, ingredients, guide})
-        switchComponent('')
 
         setTitle('')
         setCourse('')
